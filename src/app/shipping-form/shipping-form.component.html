@@ -1,0 +1,179 @@
+<div class="card">
+    <div class="card-header">
+        <h1>Shipping form</h1>
+    </div>
+    <mat-card>
+        <div class="card">
+            <form novalidate
+                (ngSubmit)="onSubmit()"
+                [formGroup]="customerForm">
+            
+                <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label"
+                           for="firstNameId">First Name:</label>
+                    <div class="col-md-8">
+                      <input class="form-control"
+                             id="firstNameId"
+                             type="text"
+                             placeholder="First Name (required)"
+                             formControlName="firstName"/>
+                      <span class="invalid-feedback">
+                        <span *ngIf="customerForm.get('firstName').errors?.required
+                         && customerForm.get('firstName').touched">
+                          Please enter your first name.
+                        </span>
+                        <span *ngIf="customerForm.get('firstName').errors?.minlength">
+                          The first name must be longer than 3 characters.
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label"
+                           for="lastNameId">Last Name:</label>
+                    <div class="col-md-8">
+                      <input class="form-control"
+                             id="lastNameId"
+                             type="text"
+                             placeholder="Last Name (required)"
+                             formControlName="lastName"/>
+                      <span class="invalid-feedback">
+                        <span *ngIf="customerForm.get('lastName').errors?.required &&
+                         customerForm.get('lastName').touched">
+                          Please enter your last name.
+                        </span>
+                        <span *ngIf="customerForm.get('lastName').errors?.maxlength">
+                          The last name must be less than 50 characters.
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label"
+                           for="lastNameId">Email:</label>
+                    <div class="col-md-8">
+                      <input class="form-control"
+                             id="emailId"
+                             type="text"
+                             placeholder="email (required)"
+                             formControlName="email"/>
+                      <span class="invalid-feedback">
+                        <span *ngIf="customerForm.get('email').errors?.required 
+                        && customerForm.get('email').touched">
+                          Please enter your email.
+                        </span>
+                        <span *ngIf="customerForm.get('email').errors?.maxlength">
+                          The email must be less than 50 characters.
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label"
+                           for="phoneId">Phone</label>
+                    <div class="col-md-8">
+                      <input class="form-control"
+                             id="phoneId"
+                             type="tel"
+                             placeholder="Phone"
+                             formControlName="phone" />
+                      <span class="invalid-feedback">
+                        <span *ngIf="customerForm.get('phone').errors?.required 
+                        && customerForm.get('phone').touched">
+                          Please enter your phone number.
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label"
+                           >Street Address</label>
+                    <div class="col-md-8">
+                      <input class="form-control"
+                            id="addressId"
+                            type="text"
+                            placeholder="Street address (required)"
+                            formControlName="address">
+                      <span class="invalid-feedback">
+                        <span *ngIf="customerForm.get('address').errors?.required 
+                        && customerForm.get('address').touched">
+                          Please enter your street address.
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label">
+                        City, State, Zip Code:</label>
+                    <div class="col-md-3">
+                      <input class="form-control"
+                              id="cityId"
+                             type="text"
+                             placeholder="City (required)"
+                             formControlName="city">
+                          <span class="invalid-feedback">
+                          <span *ngIf="customerForm.get('city').errors?.required 
+                          && customerForm.get('city').touched">
+                            Please enter a City.
+                          </span>
+                        </span>
+                    </div>
+                    <div class="col-md-3">
+                      <select class="form-control"
+                              id="stateId"
+                              formControlName="state">
+                        <option value=""
+                                disabled
+                                selected
+                                hidden>Select a State... (required)</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                      </select>
+                      <span class="invalid-feedback">
+                        <span *ngIf="customerForm.get('state').errors?.required 
+                        && customerForm.get('state').touched">
+                          Please select a State.
+                        </span>
+                      </span>
+                    </div>
+                    <div class="col-md-2">
+                      <input class="form-control"
+                              id="zipId"
+                             type="number"
+                             placeholder="Zip Code (required)"
+                             formControlName="zip">
+                          <span class="invalid-feedback">
+                          <span *ngIf="customerForm.get('zip').errors?.required 
+                          && customerForm.get('zip').touched">
+                            Please enter a Zip Code.
+                          </span>
+                        </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-2">
+                    <div class="offset-md-2 col-md-4">
+                      <button mat-raised-button color="primary"
+                              type="submit"
+                              [title]="customerForm.valid ? 'Save and continue' : 'Disabled until the form data is valid'"
+                              [disabled]="!customerForm.valid">
+                        Confirm Order
+                      </button>
+                    </div>
+                  </div>
+            </form>
+        </div>
+    </mat-card>
+</div>
+

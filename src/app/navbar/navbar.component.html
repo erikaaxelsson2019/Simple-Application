@@ -1,0 +1,14 @@
+<mat-toolbar class="toolbar" color="primary">
+    <span><a [routerLink]="['/']">
+        <h1>My Store</h1>
+      </a>
+      </span>
+  
+    <span class="example-spacer"></span>
+  
+    <span>
+      <a routerLink="/cart" class="button fancy-button">
+        <i class="material-icons">shopping_cart</i>Checkout {{ itemsInCartCount }}
+      </a>
+    </span>
+  </mat-toolbar>

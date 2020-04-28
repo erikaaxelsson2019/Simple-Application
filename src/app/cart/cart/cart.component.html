@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-header">
+        <h1>{{ pageTitle }}</h1>
+        <div *ngIf="shoppingCartItems.length === 0" class="empty-cart">Your cart is empty! Shop some products <a routerLink="/products">Here</a></div>
+        <mat-card>
+            <div class="card-body">
+                <div class="cart-item">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Unit Price</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Total Price</th>
+                        </thead>
+                        <tbody *ngFor="let item of shoppingCartItems">
+                          <tr>
+                            <td>
+                                <img [src]="item.imageUrl"
+                                [title]="item.productName"
+                                [style.width.px]="imageWidth"
+                                [style.margin.px]="imageMargin">
+                            </td>
+                            <td><a [routerLink]="['/products', item.productId]">{{ item.productName }}</a></td>
+                            <td>{{ item.price | currency:'USD':'symbol' }}</td>
+                            
+                            <div class="item-amount">
+                              <button mat-icon-button color="primary" (click)="decreaseItem(item)">-</button>
+                              <td class="amount">{{ item.amount }}</td>
+                              <button mat-icon-button color="primary" (click)="addItem(item)">+</button>
+                            </div>
+                            <td>{{ item.amount * item.price | currency: 'USD':'symbol' }}</td>
+                            <td>
+                                <button mat-raised-button color="primary" (click)="removeItem(item)">Delete</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                        <div class="cart-total">Total: {{ cartTotal | currency: 'USD':'symbol' }}</div>
+                      </table>
+                      <button mat-raised-button color="primary" id="checkout-button" disabled="{{disabled}}" routerLink="/shipping-form">Fill out shipping form</button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+  </div>
+
+  

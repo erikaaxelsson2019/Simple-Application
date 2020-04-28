@@ -1,0 +1,71 @@
+
+<div class="card">
+    <div class="card-header">
+        <h1>{{pageTitle + ': ' + product?.productName}}</h1>
+    </div>
+
+    <mat-card>
+        <div class="card" *ngIf="product">
+            
+            <div class='card-body'>
+                <div class='row'>
+                    <div class='col-md-8'>
+                        <div class='row'>
+                            <div class='col-md-4'>Name:</div>
+                            <div class='col-md-8'>{{product.productName}}</div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-md-4'>Code:</div>
+                            <div class='col-md-8'>{{product.productCode | lowercase }}</div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-md-4'>Description:</div>
+                            <div class='col-md-8'>{{product.description}}</div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-md-4'>Availability:</div>
+                            <div class='col-md-8'>{{product.releaseDate}}</div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-md-4'>Category:</div>
+                            <div class='col-md-8'>{{product.category}}</div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-md-4'>Price:</div>
+                            <div class='col-md-8'>{{product.price | currency:'USD':'symbol'}}</div>
+                        </div>
+                        
+                    </div>
+
+                    <div class='col-md-4'>
+                        <img class='center-block img-responsive'
+                             [style.width.px]='200'
+                             [style.margin.px]='2'
+                             [src]='product.imageUrl'
+                             [title]='product.productName'>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+               
+            <div class="card-footer">
+                <button mat-raised-button color="primary" 
+                (click)="onBack()">
+                <span class="material-icons">
+                    keyboard_arrow_left
+                </span>
+                Back
+                </button>
+
+                <button mat-raised-button color="primary" (click)="addToCart(product)">
+                    <span class="material-icons">
+                        add_shopping_cart
+                        </span>
+                 Add to cart
+                </button>
+            </div>
+        </div>
+    </mat-card>
+
+</div>

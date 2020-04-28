@@ -1,0 +1,22 @@
+.toolbar {
+    box-shadow: 0 7px 6px -2px rgba(0,0,0,.3);
+  
+    a {
+        text-decoration: none;
+        color: white;
+
+        i {
+          margin-right: 6%;
+        }
+    }
+
+  a:hover {
+    color: grey;
+  }
+ 
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+

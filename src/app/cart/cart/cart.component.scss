@@ -1,0 +1,24 @@
+.empty-cart {
+    margin: 2%;
+    font-weight: 600;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.cart-total {
+    margin-top: 5%;
+    font-weight: 500;
+}
+
+.item-amount {
+    display: flex;
+    margin-top: 1%;
+    
+    .amount {
+        margin: 3%;
+        margin-top: 5%;
+    }
+
+}

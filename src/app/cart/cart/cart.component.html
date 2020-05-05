@@ -22,7 +22,7 @@
                                 [style.width.px]="imageWidth"
                                 [style.margin.px]="imageMargin">
                             </td>
-                            <td><a [routerLink]="['/products', item.productId]">{{ item.productName }}</a></td>
+                            <td><a [routerLink]="['/products', item.id]">{{ item.productName }}</a></td>
                             <td>{{ item.price | currency:'USD':'symbol' }}</td>
                             
                             <div class="item-amount">

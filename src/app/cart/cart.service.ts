@@ -16,9 +16,9 @@ export class CartService {
   }
 
   public addToCart(item: IProduct) {
-    if(this.itemsInCart.some(p => p.productId == item.productId))
+    if(this.itemsInCart.some(p => p.id == item.id))
     {
-      var item = this.itemsInCart.filter(p => p.productId == item.productId)[0];
+      var item = this.itemsInCart.filter(p => p.id == item.id)[0];
       item.amount += 1;
       this.itemsInCartSubject.next(this.itemsInCart);
     }
@@ -33,7 +33,7 @@ export class CartService {
 
   public decreaseItemFromCart(item: IProduct) {
     for(let [index, p] of this.itemsInCart.entries()) {
-      if(p.productId === item.productId) {
+      if(p.id === item.id) {
         p.amount -= 1;
         // om index är noll, splice tar bort hela produkten från listan
         if(p.amount == 0) {
@@ -46,7 +46,7 @@ export class CartService {
 
   public removeFromCart(item: IProduct) {
     const currentItems = [...this.itemsInCart];
-    const itemsWithoutRemoved = currentItems.filter(p => p.productId !== item.productId);
+    const itemsWithoutRemoved = currentItems.filter(p => p.id !== item.id);
     this.itemsInCartSubject.next(itemsWithoutRemoved);
   }
 

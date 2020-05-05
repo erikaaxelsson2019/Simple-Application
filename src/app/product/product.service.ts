@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, Subscription } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { IProduct } from '../product';
+import { IndexedDbService } from '../database/indexed-db.service';
 
 @Injectable({
 providedIn: 'root'
@@ -11,9 +12,13 @@ providedIn: 'root'
 export class ProductService {
     private productUrl = 'assets/api/products.json';
 
-    constructor(private http: HttpClient) { }
+    sub: Subscription;
+    products: IProduct[] = [];
 
-    getProducts(): Observable<IProduct[]> {
+    constructor(private http: HttpClient,
+                private indexedDb: IndexedDbService) { }
+
+    getProducts(): Observable<any> {
         return this.http.get<IProduct[]>(this.productUrl).pipe(
             tap(data => console.log('All: ' + JSON.stringify(data))),
             catchError(this.handleError)
@@ -23,7 +28,7 @@ export class ProductService {
     getProduct(id: number): Observable<IProduct | undefined> {
         return this.getProducts()
           .pipe(
-            map((products: IProduct[]) => products.find(p => p.productId === id)),
+            map((products: IProduct[]) => products.find(p => p.id === id)),
             catchError(this.handleError)
           );
     }

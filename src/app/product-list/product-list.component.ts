@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IProduct } from '../product';
 import { ProductService } from '../product/product.service';
 import { Subscription } from 'rxjs';
+import { IndexedDbService } from '../database/indexed-db.service';
 
 @Component({
   selector: 'app-product-list',
@@ -29,7 +30,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   products: any[] = [];
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+              private indexedDb: IndexedDbService) {
    }
     
    performFilter(filterBy: string): IProduct[] {
@@ -39,7 +41,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sub = this.productService.getProducts().subscribe({
+    this.sub = this.indexedDb.all().subscribe({
       next: products => {
         this.products = products;
         this.filteredProducts = this.products;

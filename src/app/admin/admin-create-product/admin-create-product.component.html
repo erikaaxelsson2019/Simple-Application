@@ -1,0 +1,154 @@
+<div class="card">
+    <div class="card-header">
+     <h1>Admin | Add a new product</h1> 
+    </div>
+
+    <mat-card>
+        <form novalidate
+            (ngSubmit)="createProduct(product)"
+            [formGroup]="productForm">
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                   for="productNameId">Product Name:</label>
+                   <div class="col-md-8">
+                    <input class="form-control"
+                           id="productNameId"
+                           type="text"
+                           placeholder="Name (required)"
+                           formControlName="productName"/>
+                    <span class="invalid-feedback">
+                        <span *ngIf="productForm.get('productName').errors?.required && 
+                        productForm.get('productName').touched">
+                            Please enter a product name
+                        </span>
+                        <span *ngIf="productForm.get('productName').errors?.minLength">
+                            Product name must be at least 3 characters.
+                        </span>
+                        <span *ngIf="productForm.get('productName').errors?.maxLength">
+                            Product name must be less than 20 characters.
+                        </span>
+                    </span>
+                  </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                       for="productCodeId">Product Code:</label>
+                <div class="col-md-8">
+                  <input class="form-control"
+                         id="productCodeId"
+                         type="text"
+                         placeholder="Code (required)"
+                         formControlName="productCode"/>
+                  <span class="invalid-feedback">
+                    <span *ngIf="productForm.get('productCode').errors?.required && 
+                    productForm.get('productCode').touched">
+                        Please enter a product code
+                    </span>
+                  </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                        for="releaseDateId">Releasedate:</label>
+    
+                <div class="col-md-8">
+                    <input class="form-control"
+                            id="releaseDateId"
+                            type="text"
+                            placeholder="Releasedate"
+                            formControlName="releaseDate"/>
+                    <span class="invalid-feedback">
+                        <span *ngIf="productForm.get('releaseDate').errors?.required && 
+                        productForm.get('releaseDate').touched">
+                            Please enter a release date
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                       for="priceId">Price:</label>
+                <div class="col-md-8">
+                  <input class="form-control"
+                         id="priceId"
+                         type="text"
+                         placeholder="Price (required)"
+                         formControlName="price"/>
+                  <span class="invalid-feedback">
+                    <span *ngIf="productForm.get('price').errors?.required && 
+                    productForm.get('price').touched">
+                        Please enter a product price
+                    </span>
+                  </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                        for="descriptionId">Description:</label>
+    
+                <div class="col-md-8">
+                    <textarea class="form-control"
+                            id="descriptionId"
+                            placeholder="Description (required)"
+                            rows=3
+                            formControlName="description"></textarea>
+                    <span class="invalid-feedback">
+                        <span *ngIf="productForm.get('description').errors?.required && 
+                        productForm.get('description').touched">
+                            Please enter a product description
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                       for="imageId">ImageUrl:</label>
+                <div class="col-md-8">
+                  <input class="form-control"
+                         id="imageId"
+                         type="text"
+                         placeholder="ImageUrl"
+                         formControlName="imageUrl"/>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                       for="categoryId">Category:</label>
+                <div class="col-md-8">
+                  <input class="form-control"
+                         id="categoryId"
+                         type="text"
+                         placeholder="Category"
+                         formControlName="category"/>
+                </div>
+            </div>
+
+            <div class="form-group row mb-5">
+                <div class="edit-buttons">
+                  <button mat-raised-button color="primary"
+                          style="width:80px;"
+                          type="submit"
+                          [title]="productForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                          [disabled]="!productForm.valid">
+                    Save
+                  </button>
+                  <button mat-raised-button color="primary"
+                          style="width:80px;"
+                          type="button"
+                          title="Cancel your edits"
+                          [routerLink]="['/admin']">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+
+        </form>
+    </mat-card>
+</div>

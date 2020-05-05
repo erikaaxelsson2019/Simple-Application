@@ -7,6 +7,10 @@ import { ProductGuard } from './product/product.guard';
 import { CartComponent } from './cart/cart/cart.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.component';
+import { AdminListProductsComponent } from './admin/admin-list-products/admin-list-products.component';
+import { AdminEditProductComponent } from './admin/admin-edit-product/admin-edit-product.component';
+import { AdminCreateProductComponent } from './admin/admin-create-product/admin-create-product.component';
+
 
 
 const routes: Routes = [
@@ -19,6 +23,9 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'shipping-form', component: ShippingFormComponent },
   { path: 'order-confirmed', component: OrderConfirmedComponent },
+  { path: 'admin', component: AdminListProductsComponent },
+  { path: 'admin/:id/admin-edit', component: AdminEditProductComponent },
+  { path: 'admin/:id/admin-create', component: AdminCreateProductComponent},
   { path: '', redirectTo: 'products', pathMatch: 'full' },
   { path: '**', redirectTo: 'products', pathMatch: 'full' }
 ];

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from './product.service';
 import { CartService } from '../cart/cart.service';
 import { Subscription } from 'rxjs';
+import { IndexedDbService } from '../database/indexed-db.service';
 
 @Component({
   templateUrl: './product.component.html',
@@ -18,8 +19,8 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private productService: ProductService,
-              private cartService: CartService) { }
+              private cartService: CartService,
+              private indexedDb: IndexedDbService) { }
 
   ngOnInit(): void {
     const param = this.route.snapshot.paramMap.get('id');
@@ -30,10 +31,15 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   getProduct(id: number) {
-    this.sub = this.productService.getProduct(id).subscribe({
-      next: product => this.product = product,
-      error: err => this.errorMessage = err
-    });
+    this.sub = this.route.paramMap.subscribe(
+      params => {
+        const id = +params.get('id');
+        this.indexedDb.get(id).subscribe({
+          next: product => this.product = product,
+          error: err => this.errorMessage = err
+        });
+      }
+    );
   }
 
   onBack(): void {

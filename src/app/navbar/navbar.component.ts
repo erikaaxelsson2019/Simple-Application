@@ -26,10 +26,7 @@ export class NavbarComponent implements OnInit {
       } else {
         this.itemsInCartCount = 0;
       }
-     
-
     });
-
   }
 
   ngOnInit(): void {

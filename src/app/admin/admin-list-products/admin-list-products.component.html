@@ -1,0 +1,47 @@
+
+<div class="card">
+    <div class="card-header">
+        <h1>Admin Product List</h1>
+    </div>
+
+    <mat-card>
+        <div class="table-responsive">
+            <button mat-raised-button color="primary" [routerLink]="['/admin/0/admin-create']">Add a new product</button>
+            <table class="table" *ngIf="products && products.length">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Product</th>
+                        <th>Code</th>
+                        <th>Available</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor='let product of products'>
+                        <td>{{ product.id }}</td>
+                        <td>
+                            <a [routerLink]="['/admin', product.id, 'admin-edit']">
+                                {{ product.productName }}
+                            </a>
+                        </td>
+                        <td>{{ product.productCode }}</td>
+                        <td>{{ product.releaseDate }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>{{ product.price | currency:'USD':'symbol' }}</td>
+                        <td>
+                            <button mat-stroked-button color="warn"
+                                    title="Delete product"
+                                    (click)=" deleteProduct(product.id)">
+                                    X
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </mat-card>
+</div>
